@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
@@ -11,7 +11,6 @@ function App() {
 
         <Counter3></Counter3>
 
-        <Users></Users>
       </header>
     </div>
   );
@@ -22,7 +21,7 @@ function Counter() {
   const handleIncrease = () => console.log('clicked');
   // an arrow function without parameter
   return (
-    <div>
+    <div style={{ border: '2px solid gray', margin: '10px', padding: '10px' }}>
       <h1>Count: {count}</h1>
       <button style={{ color: 'green' }} onClick={handleIncrease}>Increase </button>
       {/* adding event handler */}
@@ -38,7 +37,7 @@ function Counter2() {
     // setCount(count + 1);
   };
   return (
-    <div>
+    <div style={{ border: '2px solid gray', margin: '10px', padding: '10px' }}>
       <h1>Count: {count}</h1>
       <button style={{ color: 'red' }} onClick={handleIncrease}>Increase </button>
       {/* adding event handler */}
@@ -50,7 +49,7 @@ function Counter3() {
   const [count, setCount] = useState(5);
   const handleIncrease = () => setCount(count + 1);
   return (
-    <div>
+    <div style={{ border: '2px solid gray', margin: '10px', padding: '10px' }}>
       <h1>Count: {count}</h1>
       <button style={{ color: 'red' }} onClick={handleIncrease}>Increase </button>
       {/* <button style={{ color: 'red' }} onClick={() => setCount(count + 1)}>Increase </button> */}
@@ -58,30 +57,6 @@ function Counter3() {
       {/* adding event handler */}
     </div>
   )
-}
-
-//  load dynamic data, api call
-
-function Users() {
-  const [users, setUsers] = useState([]);
-  useEffect(() => {
-    // console.log('Calling Effect');
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
-      .then(data => setUsers(data))
-    // .then(data => console.log(data))
-  }, []);
-  return (
-    <div>
-      <h3>Dynamic Users : {users.length}</h3>
-      <ul>
-        {
-          users.map(user => <li>{user.name}</li>)
-        }
-      </ul>
-      {/* { console.log(users)} */}
-    </div>
-  );
 }
 
 export default App;
